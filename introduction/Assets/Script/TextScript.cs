@@ -25,7 +25,7 @@ public class TextScript : MonoBehaviour
         q2 = "歌うことが好き";
         q3 = "寝ることが好き";
         q4 = "アナログゲームが好き";
-        q5 = "知り合った人とは\n積極的に仲良くなりたい";
+        q5 = "知り合った人とは積極的に仲良くなりたい";
         ini = false;
     }
 

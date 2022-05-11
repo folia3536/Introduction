@@ -40,6 +40,9 @@ public class Title : MonoBehaviour
         {
             TextScript.Init();
         }
+
+        GetBool();
+        GetText();
     }
 
     public void SetMe()
@@ -47,7 +50,7 @@ public class Title : MonoBehaviour
         if(me.text.Length != 0)
         {
             TextScript.me = me.text;
-            titleOb.GetComponent<Text>().text = me.text + "さんとの\n相性診断";
+            titleOb.GetComponent<Text>().text = me.text + "さん¥nとの相性診断";
         }
     }
     public void SetYou()
@@ -107,6 +110,7 @@ public class Title : MonoBehaviour
 
     public void ActiveOption(GameObject option)
     {
+        GetText();
         if(option.activeInHierarchy)
         {
             option.SetActive(false);
@@ -114,6 +118,33 @@ public class Title : MonoBehaviour
         else
         {
             option.SetActive(true);
+        }
+    }
+
+    public void GetText()
+    {
+        me.placeholder.GetComponent<Text>().text = TextScript.me;
+        you.placeholder.GetComponent<Text>().text = TextScript.you;
+        q1.placeholder.GetComponent<Text>().text = TextScript.q1;
+        q2.placeholder.GetComponent<Text>().text = TextScript.q2;
+        q3.placeholder.GetComponent<Text>().text = TextScript.q3;
+        q4.placeholder.GetComponent<Text>().text = TextScript.q4;
+        q5.placeholder.GetComponent<Text>().text = TextScript.q5;
+    }
+
+    void GetBool()
+    {
+        for(int i = 0; i < TextScript.check.Length; i++)
+        {
+            if(TextScript.check[i] == 1)
+            {
+                toggles[i].GetComponent<Toggle>().isOn = true;
+            }
+            else if(TextScript.check[i] == 0)
+            {
+                toggles[i].GetComponent<Toggle>().isOn = false;
+            }
+            
         }
     }
 
@@ -129,6 +160,16 @@ public class Title : MonoBehaviour
         }
         Debug.Log(toggles[0].GetComponent<Toggle>().isOn + "," + toggles[1].GetComponent<Toggle>().isOn + "," + toggles[2].GetComponent<Toggle>().isOn + "," + toggles[3].GetComponent<Toggle>().isOn + "," + toggles[4].GetComponent<Toggle>().isOn);
     }
+
+    public void GameEnd()
+    {
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #else
+        Application.Quit();
+        #endif
+    }
+
     // Update is called once per frame
     void Update()
     {

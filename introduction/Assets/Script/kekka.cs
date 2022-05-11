@@ -27,7 +27,6 @@ public class kekka : MonoBehaviour
 
     public void TitleBack()
     {
-        TextScript.check = new int[] { 1, 1, 1, 1, 1 };
         TextScript.compatibility = 0;
         SceneManager.LoadScene("title");
     }
